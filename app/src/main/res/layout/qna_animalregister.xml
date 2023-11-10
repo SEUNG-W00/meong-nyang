@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NextActivity">
+    tools:context=".AnimalRegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,14 +13,9 @@
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        android:layout_alignParentTop="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
-
-        <ImageView
-            android:id="@+id/backBtn"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/baseline_arrow_back_24"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,11 +29,10 @@
     </androidx.appcompat.widget.Toolbar>
 
     <WebView
-        android:id="@+id/healthinfo_webview"
-        android:layout_width="409dp"
-        android:layout_height="679dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="51dp"
+        android:id="@+id/animalregister_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         tools:ignore="MissingConstraints" />
 
     <RelativeLayout

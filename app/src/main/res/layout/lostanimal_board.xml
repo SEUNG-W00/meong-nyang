@@ -13,102 +13,102 @@
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        android:layout_alignParentTop="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/qna_menu_top">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="실종 동물 게시판"
+            android:text="실종 동물 등록 게시판"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:textColor="@color/black"
-            android:text="작성하기"
-            android:backgroundTint="@color/white"/>
 
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:clickable="true"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:background="#F0F0F0"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/lostanimal_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal|top|left"
-                android:layout_marginTop="8dp"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="10dp"
+                android:gravity="center_horizontal|top|left"
                 android:text="글 제목"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
 
             <TextView
+                android:id="@+id/lostanimal_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal|top|left"
-                android:layout_marginTop="12dp"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
+                android:gravity="center_horizontal|top|left"
                 android:text="글 내용"
                 android:textSize="10sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/lostlocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="실종된 장소"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/lostdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="실종된 날짜"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
 
                 <TextView
+                    android:id="@+id/losttime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="실종된 시간"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/lostanimal_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
 
-</LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

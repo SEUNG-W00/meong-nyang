@@ -4,16 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".QnAActivity">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#F0F0F0"
-        android:gravity="center"
-        android:text="QnA 및 애견 관련 정보"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:layout_alignParentTop="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="QnA 및 애견정보"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,23 +119,23 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/healthinfobtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="60dp"
+        android:backgroundTint="#F0F0F0"
+        android:drawableRight="@drawable/baseline_arrow_right_24"
+        android:text="반려견 건강정보"
+        android:textColor="@color/black" />
 
-        <Button
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:text="반려견 건강정보" />
-
-        <Button
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text=">"/>
-    </LinearLayout>
+    <Button
+        android:id="@+id/animalregisterbtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="#F0F0F0"
+        android:drawableRight="@drawable/baseline_arrow_right_24"
+        android:text="동물 등록 방법"
+        android:textColor="@color/black" />
 
     <RelativeLayout
         android:id="@+id/rlContainer"

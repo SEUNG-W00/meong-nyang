@@ -8,8 +8,23 @@ public class LostAnimal {
     private String lostdate;
     private String losttime;
     private String image;
+    private String name;
+    private String species;
+    private String callnum;
 
-    public LostAnimal(){}
+    public LostAnimal() {}
+
+    public LostAnimal(String title, String content, String lostlocation, String lostdate, String losttime, String image, String name, String species, String callnum) {
+        this.title = title;
+        this.content = content;
+        this.lostlocation = lostlocation;
+        this.lostdate = lostdate;
+        this.losttime = losttime;
+        this.image = image;
+        this.name = name;
+        this.species = species;
+        this.callnum = callnum;
+    }
 
     public String getTitle() {
         return title;
@@ -57,5 +72,29 @@ public class LostAnimal {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public String getCallnum() {
+        return callnum;
+    }
+
+    public void setCallnum(String callnum) {
+        this.callnum = callnum;
     }
 }

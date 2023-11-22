@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.LostAnimalViewHolder> {
@@ -28,7 +26,7 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
 
     @NonNull
     @Override
-    public LostAnimalAdapter.LostAnimalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LostAnimalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_lostanimalitemlist, parent, false);
         LostAnimalViewHolder holder = new LostAnimalViewHolder(view);
@@ -36,13 +34,13 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LostAnimalAdapter.LostAnimalViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LostAnimalViewHolder holder, int position) {
 
-        Glide.with(holder.lostimage)
+        Glide.with(holder.image)
                 .load(arrayList.get(position).getImage())
-                .into(holder.lostimage);
-        holder.losttitle.setText(arrayList.get(position).getTitle());
-        holder.lostcontent.setText(arrayList.get(position).getContent());
+                .into(holder.image);
+        holder.title.setText(arrayList.get(position).getTitle());
+        holder.content.setText(arrayList.get(position).getContent());
         holder.lostlocation.setText(arrayList.get(position).getLostlocation());
         holder.lostdate.setText(arrayList.get(position).getLostdate());
         holder.losttime.setText(arrayList.get(position).getLosttime());
@@ -56,20 +54,20 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
 
     public class LostAnimalViewHolder extends RecyclerView.ViewHolder {
 
-        TextView losttitle;
-        TextView lostcontent;
+        TextView title;
+        TextView content;
         TextView lostlocation;
         TextView lostdate;
         TextView losttime;
-        ImageView lostimage;
+        ImageView image;
         public LostAnimalViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.losttitle = itemView.findViewById(R.id.losttitle);
-            this.lostcontent = itemView.findViewById(R.id.lostcontent);
+            this.title = itemView.findViewById(R.id.losttitle);
+            this.content = itemView.findViewById(R.id.lostcontent);
             this.lostlocation = itemView.findViewById(R.id.lostlocation);
             this.lostdate = itemView.findViewById(R.id.lostdate);
             this.losttime = itemView.findViewById(R.id.losttime);
-            this.lostimage = itemView.findViewById(R.id.lostimage);
+            this.image = itemView.findViewById(R.id.lostimage);
 
 
         }

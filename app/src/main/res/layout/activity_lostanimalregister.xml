@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LostAnimalRegisterActivity">
+    tools:context=".LostAnimalRegister">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -153,6 +153,7 @@
         android:layout_marginRight="30dp">
 
         <EditText
+            android:id="@+id/title_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="글 제목"
@@ -161,6 +162,7 @@
             android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/content_et"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"

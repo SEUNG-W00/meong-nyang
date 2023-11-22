@@ -1,8 +1,13 @@
 package com.example.firebasetest2;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,15 +44,15 @@ public class RecyclerActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); // Firebase Database Connect
 
-        databaseReference = database.getReference("LostAnimal"); //DB Table Connect
+        databaseReference = database.getReference("LostAnimal"); // DB Table Connect
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Firebase Database 데이터를 받아오는 곳
                 arrayList.clear(); // ArrayList init
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List 추출
-                    LostAnimal lostAnimal = snapshot.getValue(LostAnimal.class); // LostAnimal 객체에 데이터 전송
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) { // 반복문으로 데이터 List 추출
+                    LostAnimal lostAnimal = dataSnapshot1.getValue(LostAnimal.class); // LostAnimal 객체에 데이터 전송
                     arrayList.add(lostAnimal); // 전송된 데이터 arraylist에 넣어 리사이클러뷰로 보낼 준비
                 }
                 adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
@@ -56,12 +61,23 @@ public class RecyclerActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // DB error
-                Log.e("RecyclerActivity", String.valueOf(databaseError.toException())); // print error
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show(); // print error
+                Log.e("RecyclerActivity", String.valueOf(databaseError.toException()));
             }
         });
 
         adapter = new LostAnimalAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // Recyclerview adapter connect
+
+        ImageView contentwritebtn = (ImageView) findViewById(R.id.contentWriteBtn);
+        contentwritebtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LostAnimalRegister.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

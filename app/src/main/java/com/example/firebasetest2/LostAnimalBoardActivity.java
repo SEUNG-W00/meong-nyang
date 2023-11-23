@@ -4,13 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RecyclerActivity extends AppCompatActivity {
+public class LostAnimalBoardActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -35,6 +39,12 @@ public class RecyclerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lostanimal_board);
+
+        //add toolbar
+        Toolbar toolbar = findViewById (R.id.toolbar);
+        setSupportActionBar (toolbar); //액티비티의 앱바(App Bar)로 지정
+        getSupportActionBar().setDisplayShowTitleEnabled(false); //앱바의 App Name 비활성화
+        ActionBar actionBar = getSupportActionBar(); //앱바 제어를 위해 툴바 액세스
 
         recyclerView = findViewById(R.id.recyclerView); // 리사이클러뷰 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
@@ -69,15 +79,24 @@ public class RecyclerActivity extends AppCompatActivity {
         adapter = new LostAnimalAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // Recyclerview adapter connect
 
-        ImageView contentwritebtn = (ImageView) findViewById(R.id.contentWriteBtn);
-        contentwritebtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LostAnimalRegister.class);
-                startActivity(intent);
-            }
-        });
     }
 
+    // Inflating the menu items from the menu_items.xml file
+
+
+    // Handling the click events of the menu items
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Switching on the item id of the menu item
+        if(item.getItemId() == R.id.registerbtn) {
+            Intent intent = new Intent(getApplicationContext(), LostAnimalRegisterActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(getApplicationContext(), QnAActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

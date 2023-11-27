@@ -54,9 +54,19 @@
         </activity>
 
         <activity
+            android:name=".PopupCompleteActivity"
+            android:theme="@style/DialogTheme">
+        </activity>
+
+        <activity
+            android:name=".PopupEndActivity"
+            android:theme="@style/DialogTheme">
+        </activity>
+
+
+        <activity
             android:name=".QnAAnimalRegisterActivity"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="true">
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
         </activity>
 
         <activity

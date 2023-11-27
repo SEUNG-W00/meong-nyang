@@ -20,7 +20,6 @@ public class QnAActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById (R.id.toolbar);
         setSupportActionBar (toolbar); //액티비티의 앱바(App Bar)로 지정
         getSupportActionBar().setDisplayShowTitleEnabled(false); //앱바의 App Name 비활성화
-        ActionBar actionBar = getSupportActionBar(); //앱바 제어를 위해 툴바 액세스
 
         Button animalregisterbtn = (Button) findViewById(R.id.animalregisterbtn);
         animalregisterbtn.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +44,6 @@ public class QnAActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater ().inflate (R.menu.qna_menu_top, menu);
-
         return true;
     }
 }

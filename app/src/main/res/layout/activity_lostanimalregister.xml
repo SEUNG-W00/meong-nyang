@@ -35,96 +35,66 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/lostlocation_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                android:text="실종된 장소" />
 
             <EditText
                 android:id="@+id/lostlocation_et"
-                android:layout_width="160dp"
-                android:layout_height="25dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:hint="실종된 장소"/>
 
-            <TextView
-                android:id="@+id/lostdate_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                android:text="실종된 날짜" />
 
             <EditText
                 android:id="@+id/lostdate_et"
-                android:layout_width="160dp"
-                android:layout_height="25dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:hint="실종된 날짜"/>
 
-            <TextView
-                android:id="@+id/losttime_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                android:text="실종된 시간" />
 
             <EditText
                 android:id="@+id/losttime_et"
-                android:layout_width="160dp"
-                android:layout_height="25dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="실종된 시간"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="40dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                android:text="반려견 이름" />
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1">
 
             <EditText
                 android:id="@+id/name_et"
-                android:layout_width="160dp"
-                android:layout_height="25dp"/>
-
-            <TextView
-                android:id="@+id/species_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                android:text="견종" />
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:hint="반려견 이름"/>
 
             <EditText
                 android:id="@+id/species_et"
-                android:layout_width="160dp"
-                android:layout_height="25dp"/>
-
-            <TextView
-                android:id="@+id/callnum_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                android:text="보호자 연락처" />
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:hint="견종"/>
 
             <EditText
                 android:id="@+id/callnum_et"
-                android:layout_width="160dp"
-                android:layout_height="25dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:hint="보호자 연락처"/>
 
         </LinearLayout>
 
@@ -135,22 +105,70 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/gray">
+
+            <ImageButton
+                android:id="@+id/addphotobtn"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/baseline_add_a_photo_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사진 추가"
+                android:layout_gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
+            android:id="@+id/imageview1"
+            android:background="@color/gray"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/imageview2"
+            android:background="@color/gray"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/imageview3"
+            android:background="@color/gray"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/rlContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <EditText
             android:id="@+id/title_et"
@@ -173,11 +191,6 @@
     </LinearLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/rlContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
@@ -186,7 +199,9 @@
             android:layout_marginBottom="1dp"
             android:elevation="5dp"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/main_menu_bottom"></com.google.android.material.bottomnavigation.BottomNavigationView>
+            app:menu="@menu/main_menu_bottom">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </RelativeLayout>
 

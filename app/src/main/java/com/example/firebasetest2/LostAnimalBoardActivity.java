@@ -5,14 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,10 +37,9 @@ public class LostAnimalBoardActivity extends AppCompatActivity {
         setContentView(R.layout.lostanimal_board);
 
         //add toolbar
-        Toolbar toolbar = findViewById (R.id.toolbar);
-        setSupportActionBar (toolbar); //액티비티의 앱바(App Bar)로 지정
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar); //액티비티의 앱바(App Bar)로 지정
         getSupportActionBar().setDisplayShowTitleEnabled(false); //앱바의 App Name 비활성화
-        ActionBar actionBar = getSupportActionBar(); //앱바 제어를 위해 툴바 액세스
 
         recyclerView = findViewById(R.id.recyclerView); // 리사이클러뷰 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
@@ -81,22 +76,23 @@ public class LostAnimalBoardActivity extends AppCompatActivity {
 
     }
 
-    // Inflating the menu items from the menu_items.xml file
+    // Inflate ; define xml menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.lostanimalboard_menu_top, menu);
+        return true;
+    }
 
-
-    // Handling the click events of the menu items
-    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Switching on the item id of the menu item
-        if(item.getItemId() == R.id.registerbtn) {
-            Intent intent = new Intent(getApplicationContext(), LostAnimalRegisterActivity.class);
-            startActivity(intent);
+        int id = item.getItemId();
+
+        if (id == R.id.registerbtn) {
+            // Handle the "Register" menu item click
+            startActivity(new Intent(this, LostAnimalRegisterActivity.class));
+            return true;
         }
-        else {
-            Intent intent = new Intent(getApplicationContext(), QnAActivity.class);
-            startActivity(intent);
-        }
+
         return super.onOptionsItemSelected(item);
     }
 }

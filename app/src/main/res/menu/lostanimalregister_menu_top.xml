@@ -6,6 +6,5 @@
         android:layout_height="wrap_content"
         android:title="완료"
         android:id="@+id/registercompletebtn"
-        android:onClick="sendData"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom"/>
 </menu>

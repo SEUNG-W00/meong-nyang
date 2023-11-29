@@ -68,8 +68,6 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
             this.lostdate = itemView.findViewById(R.id.lostdate);
             this.losttime = itemView.findViewById(R.id.losttime);
             this.image = itemView.findViewById(R.id.lostimage);
-
-
         }
     }
 }

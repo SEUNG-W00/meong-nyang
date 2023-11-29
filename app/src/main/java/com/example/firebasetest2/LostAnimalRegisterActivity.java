@@ -12,8 +12,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -22,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,12 +28,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Arrays;
+
 public class LostAnimalRegisterActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
-    private Uri uri;
-    private ImageButton selectimage;
-    private ImageView imageview1, imageview2, imageview3;
+    private Uri[] uris = new Uri[3];
+    private ImageButton selectImage;
+    private ImageView[] imageViews = new ImageView[3];
     private EditText lostlocation, losttime, lostdate, name, species, callnum, title, content;
 
     @Override
@@ -49,18 +50,11 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar(); //앱바 제어를 위해 툴바 액세스
         actionBar.setDisplayHomeAsUpEnabled (true); //앱바에 뒤로가기 버튼 만들기
 
-        imageview1 = findViewById(R.id.imageview1);
-        imageview2 = findViewById(R.id.imageview2);
-        imageview3 = findViewById(R.id.imageview3);
+        selectImage = findViewById(R.id.selectimage);
 
-        selectimage = findViewById(R.id.selectimage);
-
-        selectimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                select();
-            }
-        });
+        imageViews[0] = findViewById(R.id.imageView1);
+        imageViews[1] = findViewById(R.id.imageView2);
+        imageViews[2] = findViewById(R.id.imageView3);
 
         title = findViewById(R.id.title_et);
         content = findViewById(R.id.content_et);
@@ -72,6 +66,12 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
         callnum = findViewById(R.id.callnum_et);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        selectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                select();
+            }
+        });
     }
 
     private void select() {
@@ -82,15 +82,24 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
 
     private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        uri = result.getData().getData();
-                        imageview1.setImageURI(uri);
-                        Log.d("test", uri.toString());
+            result -> {
+                if(result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Uri uri = result.getData().getData();
 
+                    // Determine the ImageView to set the image
+                    ImageView targetImageView = determineTargetImageView();
+
+                    // Set the image to the determined ImageView
+                    if (targetImageView != null) {
+                        int index = Arrays.asList(imageViews).indexOf(targetImageView);
+                        uris[index] = uri;
+                        targetImageView.setImageURI(uri);
+                        Log.d("test", uri.toString());
+                    } else {
+                        // Handle the case where all ImageViews are occupied
+                        Toast.makeText(LostAnimalRegisterActivity.this, "You can only select up to 3 images", Toast.LENGTH_SHORT).show();
                     }
+
                 }
             });
 
@@ -121,19 +130,33 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void upload() {
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference("Study");
-        storageReference.child("images").child("image").putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(LostAnimalRegisterActivity.this, "업로드에 성공했습니다", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(LostAnimalRegisterActivity.this, "업로드에 실패했습니다", Toast.LENGTH_SHORT).show();
-                }
+    private ImageView determineTargetImageView() {
+        for (ImageView imageView : imageViews) {
+            if (imageView.getDrawable() == null) {
+                return imageView;
             }
-        });
+        }
+        return null;
     }
 
+    private void upload() {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("meong-nyang");
+
+        for (int i = 0; i < 3; i++) {
+            if (imageViews[i].getDrawable() != null && uris[i] != null) {
+                final int index = i;
+                storageReference.child("images/image" + (index + 1)).putFile(uris[i]).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Get the download URL of the uploaded image
+                            Toast.makeText(LostAnimalRegisterActivity.this, "Image" + (index + 1) + " upload success", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LostAnimalRegisterActivity.this, "Image " + (index + 1) + " upload failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        }
+    }
 }

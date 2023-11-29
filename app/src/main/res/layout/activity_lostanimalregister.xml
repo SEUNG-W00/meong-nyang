@@ -113,7 +113,7 @@
             android:src="@drawable/baseline_add_a_photo_24"/>
 
         <ImageView
-            android:id="@+id/imageview1"
+            android:id="@+id/imageView1"
             android:background="@color/gray"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -121,7 +121,7 @@
             android:layout_gravity="center"/>
 
         <ImageView
-            android:id="@+id/imageview2"
+            android:id="@+id/imageView2"
             android:background="@color/gray"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -129,7 +129,7 @@
             android:layout_gravity="center"/>
 
         <ImageView
-            android:id="@+id/imageview3"
+            android:id="@+id/imageView3"
             android:background="@color/gray"
             android:layout_width="80dp"
             android:layout_height="80dp"

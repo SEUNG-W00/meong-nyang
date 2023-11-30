@@ -38,6 +38,7 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
     private ImageView[] imageViews = new ImageView[3];
     private EditText lostlocation, losttime, lostdate, name, species, callnum, title, content;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +56,6 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
         imageViews[0] = findViewById(R.id.imageView1);
         imageViews[1] = findViewById(R.id.imageView2);
         imageViews[2] = findViewById(R.id.imageView3);
-
-        title = findViewById(R.id.title_et);
-        content = findViewById(R.id.content_et);
-        lostlocation = findViewById(R.id.lostlocation_et);
-        lostdate = findViewById(R.id.lostdate_et);
-        losttime = findViewById(R.id.losttime_et);
-        name = findViewById(R.id.name_et);
-        species = findViewById(R.id.species_et);
-        callnum = findViewById(R.id.callnum_et);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         selectImage.setOnClickListener(new View.OnClickListener() {
@@ -177,15 +169,35 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
         lostlocation = findViewById(R.id.lostlocation_et);
         lostdate = findViewById(R.id.lostdate_et);
         losttime = findViewById(R.id.losttime_et);
+        name = findViewById(R.id.name_et);
+        species = findViewById(R.id.species_et);
+        callnum = findViewById(R.id.callnum_et);
+
+        String ttitle= title.getText().toString();
+        String tcontent= content.getText().toString();
+        String tlostlocation= lostlocation.getText().toString();
+        String tlostdate= lostdate.getText().toString();
+        String tlosttime= losttime.getText().toString();
+        String tname= name.getText().toString();
+        String tspecies= species.getText().toString();
+        String tcallnum= callnum.getText().toString();
 
         // Create a new LostAnimal object with relevant information
         LostAnimal lostAnimal = new LostAnimal();
+
+        lostAnimal.setTitle(ttitle);
+        lostAnimal.setContent(tcontent);
+        lostAnimal.setLostlocation(tlostlocation);
+        lostAnimal.setLostdate(tlostdate);
+        lostAnimal.setLosttime(tlosttime);
+        lostAnimal.setSpecies(tspecies);
+        lostAnimal.setName(tname);
+        lostAnimal.setCallnum(tcallnum);
         lostAnimal.setImage(imageUrl);
-        lostAnimal.setLostlocation(String.valueOf(lostlocation));
         // Set other attributes of the LostAnimal object
 
         // Push the LostAnimal object to Firebase Realtime Database
-        mDatabase.child("LostAnimal/LostAnimal_01").push().setValue(lostAnimal).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mDatabase.child("LostAnimal").push().setValue(lostAnimal).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

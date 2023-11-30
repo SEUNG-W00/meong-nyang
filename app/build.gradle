@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.firebasetest2'
+    namespace 'com.example.meong_nyang'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.firebasetest2"
+        applicationId "com.example.meong_nyang"
         minSdk 24
         targetSdk 34
         versionCode 1

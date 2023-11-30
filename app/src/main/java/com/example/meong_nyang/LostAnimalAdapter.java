@@ -1,4 +1,4 @@
-package com.example.firebasetest2;
+package com.example.meong_nyang;
 
 import android.content.Context;
 import android.view.LayoutInflater;

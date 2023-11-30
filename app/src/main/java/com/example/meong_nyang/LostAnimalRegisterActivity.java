@@ -1,4 +1,4 @@
-package com.example.firebasetest2;
+package com.example.meong_nyang;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -142,6 +142,8 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
     private void upload() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("meong-nyang");
 
+        String fileId = "lostpuppyimg";
+
         for (int i = 0; i < 3; i++) {
             if (imageViews[i].getDrawable() != null && uris[i] != null) {
                 final int index = i;
@@ -168,9 +170,18 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
     }
 
     private void saveImageUrlToDatabase(String imageUrl) {
+
+        // Define object
+        title = findViewById(R.id.title_et);
+        content = findViewById(R.id.content_et);
+        lostlocation = findViewById(R.id.lostlocation_et);
+        lostdate = findViewById(R.id.lostdate_et);
+        losttime = findViewById(R.id.losttime_et);
+
         // Create a new LostAnimal object with relevant information
         LostAnimal lostAnimal = new LostAnimal();
         lostAnimal.setImage(imageUrl);
+        lostAnimal.setLostlocation(String.valueOf(lostlocation));
         // Set other attributes of the LostAnimal object
 
         // Push the LostAnimal object to Firebase Realtime Database

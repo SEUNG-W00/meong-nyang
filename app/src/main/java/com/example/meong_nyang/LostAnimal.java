@@ -1,4 +1,4 @@
-package com.example.firebasetest2;
+package com.example.meong_nyang;
 
 public class LostAnimal {
 

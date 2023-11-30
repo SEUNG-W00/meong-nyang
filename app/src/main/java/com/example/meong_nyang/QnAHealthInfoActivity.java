@@ -1,4 +1,4 @@
-package com.example.firebasetest2;
+package com.example.meong_nyang;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class QnAAnimalRegisterActivity extends AppCompatActivity {
+public class QnAHealthInfoActivity extends AppCompatActivity {
     private String TAG = QnAHealthInfoActivity.class.getSimpleName();
 
     private WebView webView = null;
@@ -20,7 +20,7 @@ public class QnAAnimalRegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qna_animalregister);
+        setContentView(R.layout.qna_healthinfo);
 
         //add toolbar
         Toolbar toolbar = findViewById (R.id.toolbar);
@@ -29,7 +29,7 @@ public class QnAAnimalRegisterActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar(); //앱바 제어를 위해 툴바 액세스
         actionBar.setDisplayHomeAsUpEnabled (true); // 앱바에 뒤로가기 버튼 만들기
 
-        webView = (WebView) findViewById(R.id.animalregister_webview);
+        webView = (WebView) findViewById(R.id.healthinfo_webview);
 
         webView.setWebViewClient(new WebViewClient());  // 새 창 띄우기 않기
         webView.setWebChromeClient(new WebChromeClient());
@@ -50,7 +50,7 @@ public class QnAAnimalRegisterActivity extends AppCompatActivity {
 
         //웹페이지 호출
 //        webView.loadUrl("http://www.naver.com");
-        webView.loadUrl("https://www.animal.go.kr/front/awtis/faq/faqList.do?menuNo=5000000016");
+        webView.loadUrl("https://www.animal.go.kr/front/community/show.do?boardId=contents&seq=105&menuNo=5000000013");
     }
 
     @Override

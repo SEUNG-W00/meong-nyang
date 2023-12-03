@@ -1,13 +1,19 @@
 package com.example.meong_nyang;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class QnAActivity extends AppCompatActivity {
 
@@ -21,7 +27,33 @@ public class QnAActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false); //앱바의 App Name 비활성화
 
         Button animalregisterbtn = (Button) findViewById(R.id.animalregisterbtn);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        //bottomNavigation 전환
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //if문으로 item.getItemId()값이 메뉴의 id값과 같은지 확인후 intent 로 activity로 전환
+                if (item.getItemId() == R.id.info) {
+                    Intent intent = new Intent(QnAActivity.this, MainActivity2.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.missing) {
+                    Intent intent = new Intent(QnAActivity.this, LostAnimalBoardActivity.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.question) {
+                    Intent intent = new Intent(QnAActivity.this, QnAActivity.class);
+                    startActivity(intent);
+                }
+                return true; // return true;
+            }
+        });
         animalregisterbtn.setOnClickListener(new View.OnClickListener() {
+
 
             @Override
             public void onClick(View view) {

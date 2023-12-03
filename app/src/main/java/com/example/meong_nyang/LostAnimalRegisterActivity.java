@@ -1,5 +1,6 @@
 package com.example.meong_nyang;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -62,6 +65,31 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 select();
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        //bottomNavigation 전환
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //if문으로 item.getItemId()값이 메뉴의 id값과 같은지 확인후 intent 로 activity로 전환
+                if (item.getItemId() == R.id.info) {
+                    Intent intent = new Intent(LostAnimalRegisterActivity.this, MainActivity2.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.missing) {
+                    Intent intent = new Intent(LostAnimalRegisterActivity.this, LostAnimalBoardActivity.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.question) {
+                    Intent intent = new Intent(LostAnimalRegisterActivity.this, QnAActivity.class);
+                    startActivity(intent);
+                }
+                return true; // return true;
             }
         });
     }
@@ -133,8 +161,6 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
 
     private void upload() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("meong-nyang");
-
-        String fileId = "lostpuppyimg";
 
         for (int i = 0; i < 3; i++) {
             if (imageViews[i].getDrawable() != null && uris[i] != null) {

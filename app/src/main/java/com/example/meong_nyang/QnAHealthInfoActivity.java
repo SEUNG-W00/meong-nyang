@@ -1,5 +1,6 @@
 package com.example.meong_nyang;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class QnAHealthInfoActivity extends AppCompatActivity {
     private String TAG = QnAHealthInfoActivity.class.getSimpleName();
@@ -41,16 +45,38 @@ public class QnAHealthInfoActivity extends AppCompatActivity {
         webView.getSettings().setBuiltInZoomControls(true);  // 줌 확대/축소 버튼 여부
 
         webView.getSettings().setJavaScriptEnabled(true); // 자바스크립트 사용여부
-//        webview.addJavascriptInterface(new AndroidBridge(), "android");
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true); // javascript가 window.open()을 사용할 수 있도록 설정
         webView.getSettings().setSupportMultipleWindows(true); // 멀티 윈도우 사용 여부
 
         webView.getSettings().setDomStorageEnabled(true);  // 로컬 스토리지 (localStorage) 사용여부
 
-
         //웹페이지 호출
-//        webView.loadUrl("http://www.naver.com");
         webView.loadUrl("https://www.animal.go.kr/front/community/show.do?boardId=contents&seq=105&menuNo=5000000013");
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        //bottomNavigation 전환
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //if문으로 item.getItemId()값이 메뉴의 id값과 같은지 확인후 intent 로 activity로 전환
+                if (item.getItemId() == R.id.info) {
+                    Intent intent = new Intent(QnAHealthInfoActivity.this, MainActivity2.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.missing) {
+                    Intent intent = new Intent(QnAHealthInfoActivity.this, LostAnimalBoardActivity.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.question) {
+                    Intent intent = new Intent(QnAHealthInfoActivity.this, QnAActivity.class);
+                    startActivity(intent);
+                }
+                return true; // return true;
+            }
+        });
     }
 
     @Override

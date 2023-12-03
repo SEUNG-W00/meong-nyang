@@ -1,13 +1,16 @@
 package com.example.meong_nyang;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +21,7 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
 
     private ArrayList<LostAnimal> arrayList;
     private Context context;
+    private Intent intent;
 
     public LostAnimalAdapter(ArrayList<LostAnimal> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -27,7 +31,6 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
     @NonNull
     @Override
     public LostAnimalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_lostanimalitemlist, parent, false);
         LostAnimalViewHolder holder = new LostAnimalViewHolder(view);
         return holder;
@@ -44,6 +47,26 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
         holder.lostlocation.setText(arrayList.get(position).getLostlocation());
         holder.lostdate.setText(arrayList.get(position).getLostdate());
         holder.losttime.setText(arrayList.get(position).getLosttime());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int mPosition = holder.getAdapterPosition();
+
+                intent = new Intent(view.getContext(), LostAnimalDetailActivity.class);
+                //정보 넘기기
+                intent.putExtra("title", arrayList.get(mPosition).getTitle());
+                intent.putExtra("content", arrayList.get(mPosition).getContent());//변수값 인텐트로 넘기기
+                intent.putExtra("lostlocation", arrayList.get(mPosition).getLostlocation());
+                intent.putExtra("lostdate", arrayList.get(mPosition).getLostdate());
+                intent.putExtra("losttime", arrayList.get(mPosition).getLosttime());
+                intent.putExtra("image", arrayList.get(mPosition).getImage());
+                intent.putExtra("name", arrayList.get(mPosition).getName());
+                intent.putExtra("species", arrayList.get(mPosition).getSpecies());
+                intent.putExtra("callnum", arrayList.get(mPosition).getCallnum());
+
+                view.getContext().startActivity(intent); //액티비티 열기
+            }
+        });
     }
 
     @Override
@@ -60,6 +83,7 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
         TextView lostdate;
         TextView losttime;
         ImageView image;
+        CardView cardView;
         public LostAnimalViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.losttitle);
@@ -68,6 +92,7 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
             this.lostdate = itemView.findViewById(R.id.lostdate);
             this.losttime = itemView.findViewById(R.id.losttime);
             this.image = itemView.findViewById(R.id.lostimage);
+            this.cardView = itemView.findViewById(R.id.lostanimal_container);
         }
     }
 }

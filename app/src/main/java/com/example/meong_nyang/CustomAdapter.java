@@ -29,12 +29,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         private ArrayList<item> arrayList;
         private ArrayList<item> arrayListAll;
         private Context context;
-        private  Intent intent;//인텐트 선언
+        private Intent intent;//인텐트 선언
 
     public CustomAdapter(ArrayList<item> arrayList, Context context) {
             this.arrayList = arrayList;
             this.arrayListAll = arrayList;
-        this.context = context;
+            this.context = context;
     }
 
     @NonNull

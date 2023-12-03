@@ -9,7 +9,6 @@
         android:id="@+id/apply"
         android:icon="@drawable/baseline_volunteer_activism_24"
         app:showAsAction="always" />
-
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,23 +16,13 @@
         android:id="@+id/missing"
         android:icon="@drawable/baseline_pets_24"
         app:showAsAction="always"/>
-
-    <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:title="메인"
-        android:id="@+id/main"
-        android:icon="@drawable/baseline_home_24"
-        app:showAsAction="always"/>
-
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="물품 정보"
         android:id="@+id/info"
-        android:icon="@drawable/baseline_food_bank_24"
+        android:icon="@drawable/baseline_shopping_cart_24"
         app:showAsAction="always"/>
-
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,5 +30,11 @@
         android:id="@+id/question"
         android:icon="@drawable/baseline_question_answer_24"
         app:showAsAction="always"/>
-
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="마이페이지"
+        android:id="@+id/main"
+        android:icon="@drawable/baseline_supervised_user_circle_24"
+        app:showAsAction="always"/>
 </menu>

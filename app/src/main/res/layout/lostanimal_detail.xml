@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LostAnimalDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -19,12 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/backBtn"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/baseline_arrow_back_24" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +28,7 @@
             android:text="실종 동물 상세 게시글"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -50,40 +46,28 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="140dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center|left"
-                android:text="실종된 장소" />
-
-            <View
-                android:layout_width="140dp"
-                android:layout_height="2dp"
-                android:background="#646464" />
+                android:id="@+id/lostlocation"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:text="실종된 장소"
+                android:textSize="16sp"/>
 
             <TextView
-                android:layout_width="140dp"
-                android:layout_height="25dp"
+                android:id="@+id/lostdate"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
-                android:gravity="center|left"
-                android:text="실종된 날짜" />
-
-            <View
-                android:layout_width="140dp"
-                android:layout_height="2dp"
-                android:background="#646464" />
+                android:text="실종된 날짜"
+                android:textSize="16sp"/>
 
             <TextView
-                android:layout_width="140dp"
-                android:layout_height="25dp"
+                android:id="@+id/losttime"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
-                android:gravity="center|left"
-                android:text="실종된 시간" />
-
-            <View
-                android:layout_width="140dp"
-                android:layout_height="2dp"
-                android:background="#646464" />
+                android:text="실종된 시간"
+                android:textSize="16sp"/>
 
         </LinearLayout>
 
@@ -94,47 +78,35 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="140dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center|left"
-                android:text="견종 및 묘종" />
-
-            <View
-                android:layout_width="140dp"
-                android:layout_height="2dp"
-                android:background="#646464" />
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:text="반려견 이름"
+                android:textSize="16sp"/>
 
             <TextView
-                android:layout_width="140dp"
-                android:layout_height="25dp"
+                android:id="@+id/species"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
-                android:gravity="center|left"
-                android:text="작성자 ID" />
-
-            <View
-                android:layout_width="140dp"
-                android:layout_height="2dp"
-                android:background="#646464" />
+                android:text="견종 및 묘종"
+                android:textSize="16sp"/>
 
             <TextView
-                android:layout_width="140dp"
-                android:layout_height="25dp"
+                android:id="@+id/callnum"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
-                android:gravity="center|left"
-                android:text="작성자 연락처" />
-
-            <View
-                android:layout_width="140dp"
-                android:layout_height="2dp"
-                android:background="#646464" />
+                android:text="보호자 연락처"
+                android:textSize="16sp"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="130dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
@@ -142,19 +114,19 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"/>
+            android:id="@+id/imageView1"
+            android:layout_width="130dp"
+            android:layout_height="130dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"/>
+            android:id="@+id/imageView2"
+            android:layout_width="130dp"
+            android:layout_height="130dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"/>
+            android:id="@+id/imageView3"
+            android:layout_width="130dp"
+            android:layout_height="130dp" />
 
     </LinearLayout>
     
@@ -166,6 +138,7 @@
         android:layout_marginLeft="10dp">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="글 제목"
@@ -173,6 +146,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -194,7 +168,8 @@
             android:layout_marginBottom="1dp"
             android:elevation="5dp"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/main_menu_bottom"></com.google.android.material.bottomnavigation.BottomNavigationView>
+            app:menu="@menu/main_menu_bottom">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </RelativeLayout>
 

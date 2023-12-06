@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +30,7 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
     @NonNull
     @Override
     public LostAnimalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_lostanimalitemlist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_lostanimal_itemlist, parent, false);
         LostAnimalViewHolder holder = new LostAnimalViewHolder(view);
         return holder;
     }

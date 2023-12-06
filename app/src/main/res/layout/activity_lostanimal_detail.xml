@@ -40,9 +40,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="160dp"
+            android:layout_width="190dp"
             android:layout_height="130dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -50,31 +50,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
+                android:gravity="center|left"
                 android:text="실종된 장소"
-                android:textSize="16sp"/>
+                android:textStyle="bold"
+                android:textSize="13sp"/>
 
             <TextView
                 android:id="@+id/lostdate"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
+                android:gravity="center|left"
                 android:text="실종된 날짜"
-                android:textSize="16sp"/>
+                android:textStyle="bold"
+                android:textSize="13sp"/>
 
             <TextView
                 android:id="@+id/losttime"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
+                android:gravity="center|left"
                 android:text="실종된 시간"
-                android:textSize="16sp"/>
+                android:textStyle="bold"
+                android:textSize="13sp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="160dp"
+            android:layout_width="190dp"
             android:layout_height="130dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -82,24 +88,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
+                android:gravity="center|left"
                 android:text="반려견 이름"
-                android:textSize="16sp"/>
+                android:textStyle="bold"
+                android:textSize="13sp"/>
 
             <TextView
                 android:id="@+id/species"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
+                android:gravity="center|left"
                 android:text="견종 및 묘종"
-                android:textSize="16sp"/>
+                android:textStyle="bold"
+                android:textSize="13sp"/>
 
             <TextView
                 android:id="@+id/callnum"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
+                android:gravity="center|left"
                 android:text="보호자 연락처"
-                android:textSize="16sp"/>
+                android:textStyle="bold"
+                android:textSize="13sp"/>
 
         </LinearLayout>
 

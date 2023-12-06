@@ -1,6 +1,7 @@
 package com.example.meong_nyang;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,14 +35,17 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.annotation.meta.When;
 
 public class LostAnimalRegisterActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
+    private RecyclerView.Adapter adapter;
     private Uri[] uris = new Uri[3];
     private ImageButton selectImage;
+    private Dialog dialog1, dialog2;
     private int count = 0;
     private ImageView[] imageViews = new ImageView[3];
     private EditText lostlocation, losttime, lostdate, name, species, callnum, title, content;
@@ -46,7 +53,7 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lostanimalregister);
+        setContentView(R.layout.activity_lostanimal_register);
 
         //add toolbar
         Toolbar toolbar = findViewById (R.id.toolbar);
@@ -144,32 +151,85 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        int id = item.getItemId();
+        dialog1 = new Dialog(LostAnimalRegisterActivity.this);
+        dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog1.setContentView(R.layout.activity_popup_complete);
+
+        dialog2 = new Dialog(LostAnimalRegisterActivity.this);
+        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog2.setContentView(R.layout.activity_popup_cancel);
 
         if (item.getItemId() == R.id.registercompletebtn) {
-            // Handle the "Register" menu item click
-            upload();
+            popupcomplete();
+
+            return true;
         } else if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(getApplicationContext(), LostAnimalBoardActivity.class);
-            startActivity(intent);
+            popupcancel();
 
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void popupcomplete() {
+        dialog1.show();
+        Button yes = dialog1.findViewById(R.id.btn_yes);
+        Button no = dialog1.findViewById(R.id.btn_no);
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // count images;
+                for (int i = 0; i<3; i++) {
+                    if (imageViews[i].getDrawable() != null && uris[i] != null) {
+                        count = count + 1;
+                    }
+                }
+                if(count == 0) {
+                    Toast.makeText(LostAnimalRegisterActivity.this, "최소 하나의 사진을 첨부해주세요.", Toast.LENGTH_SHORT).show();
+                    dialog1.dismiss();
+                }
+                else {
+                    upload();
+                }
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog1.dismiss();
+            }
+        });
+    }
+
+    private void popupcancel() {
+        dialog2.show();
+        Button yes = dialog2.findViewById(R.id.btn_yes);
+        Button no = dialog2.findViewById(R.id.btn_no);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LostAnimalBoardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog2.dismiss();
+            }
+        });
+    }
+
     private void upload() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("meong-nyang");
 
         // Create an array to store download URLs
         String[] downloadUrls = new String[3];
 
-        // count images;
-        for (int i = 0; i<3; i++) {
-            if (imageViews[i].getDrawable() != null && uris[i] != null) {
-            count = count + 1;
-            }
-        }
 
         for (int i = 0; i < count; i++) {
             if (imageViews[i].getDrawable() != null && uris[i] != null) {
@@ -189,12 +249,11 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
                                     if (index == count-1) {
                                         // All images have been uploaded, save URLs to the Realtime Database
                                         saveImageUrlToDatabase(downloadUrls);
+                                        Intent intent = new Intent(getApplicationContext(), LostAnimalBoardActivity.class);
+                                        startActivity(intent);
                                     }
                                 }
                             });
-                            Toast.makeText(LostAnimalRegisterActivity.this, "Image" + (index + 1) + " upload success", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(LostAnimalRegisterActivity.this, "Image " + (index + 1) + " upload failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -250,10 +309,10 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LostAnimalRegisterActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostAnimalRegisterActivity.this, "작성을 완료했습니다", Toast.LENGTH_SHORT).show();
                     // Clear or navigate to another screen after successful upload
                 } else {
-                    Toast.makeText(LostAnimalRegisterActivity.this, "Data save failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostAnimalRegisterActivity.this, "작성을 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

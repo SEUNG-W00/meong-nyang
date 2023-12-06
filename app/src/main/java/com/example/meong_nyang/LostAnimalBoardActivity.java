@@ -36,7 +36,7 @@ public class LostAnimalBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lostanimal_board);
+        setContentView(R.layout.activity_lostanimal_board);
 
         //add toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);

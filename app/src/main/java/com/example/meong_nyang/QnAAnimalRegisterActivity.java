@@ -24,7 +24,7 @@ public class QnAAnimalRegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qna_animalregister);
+        setContentView(R.layout.activity_qna_animalregister);
 
         //add toolbar
         Toolbar toolbar = findViewById (R.id.toolbar);

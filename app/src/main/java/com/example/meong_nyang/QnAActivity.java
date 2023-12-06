@@ -20,7 +20,7 @@ public class QnAActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.qna);
+        setContentView (R.layout.activity_qna);
 
         Toolbar toolbar = findViewById (R.id.toolbar);
         setSupportActionBar (toolbar); //액티비티의 앱바(App Bar)로 지정

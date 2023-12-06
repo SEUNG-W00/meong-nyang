@@ -126,16 +126,24 @@
         android:backgroundTint="#F0F0F0"
         android:drawableRight="@drawable/baseline_arrow_right_24"
         android:text="반려견 건강정보"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="left|center"
+        android:paddingLeft="25dp"
         android:textColor="@color/black" />
 
     <Button
         android:id="@+id/animalregisterbtn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:backgroundTint="#F0F0F0"
+        android:backgroundTint="@color/gray"
         android:drawableRight="@drawable/baseline_arrow_right_24"
         android:text="동물 등록 방법"
-        android:textColor="@color/black" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="left|center"
+        android:paddingLeft="25dp"
+        android:textColor="@color/black"/>
 
     <RelativeLayout
         android:id="@+id/rlContainer"

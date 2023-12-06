@@ -1,7 +1,6 @@
 package com.example.meong_nyang;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,10 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class LostAnimalDetailActivity extends AppCompatActivity {
     Intent intent;
@@ -41,7 +36,7 @@ public class LostAnimalDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lostanimal_detail);
+        setContentView(R.layout.activity_lostanimal_detail);
 
         //add toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);

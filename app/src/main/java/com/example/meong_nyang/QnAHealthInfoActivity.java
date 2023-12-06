@@ -24,7 +24,7 @@ public class QnAHealthInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qna_healthinfo);
+        setContentView(R.layout.activity_qna_healthinfo);
 
         //add toolbar
         Toolbar toolbar = findViewById (R.id.toolbar);

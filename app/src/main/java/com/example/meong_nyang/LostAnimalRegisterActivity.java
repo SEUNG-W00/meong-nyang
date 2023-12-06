@@ -31,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LostAnimalRegisterActivity extends AppCompatActivity {
@@ -38,9 +39,9 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private Uri[] uris = new Uri[3];
     private ImageButton selectImage;
+    private int count = 0;
     private ImageView[] imageViews = new ImageView[3];
     private EditText lostlocation, losttime, lostdate, name, species, callnum, title, content;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,12 +158,20 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*
     private void upload() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("meong-nyang");
 
-        for (int i = 0; i < 3; i++) {
+        // Create an array to store download URLs
+        String[] downloadUrls = new String[3];
+
+        // count images;
+        for (int i = 0; i<3; i++) {
+            if (imageViews[i].getDrawable() != null && uris[i] != null) {
+            count = count + 1;
+            }
+        }
+
+        for (int i = 0; i < count; i++) {
             if (imageViews[i].getDrawable() != null && uris[i] != null) {
                 final int index = i;
                 storageReference.child("images/image" + (index + 1)).putFile(uris[i]).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -173,8 +182,14 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
                             storageReference.child("images/image" + (index + 1)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri downloadUri) {
-                                    // Save the image URL of the first image to Realtime Database
-                                    saveImageUrlToDatabase(downloadUri.toString());
+                                    // Save the image URL to the array
+                                    downloadUrls[index] = downloadUri.toString();
+
+                                    // Check if all images have been uploaded
+                                    if (index == count-1) {
+                                        // All images have been uploaded, save URLs to the Realtime Database
+                                        saveImageUrlToDatabase(downloadUrls);
+                                    }
                                 }
                             });
                             Toast.makeText(LostAnimalRegisterActivity.this, "Image" + (index + 1) + " upload success", Toast.LENGTH_SHORT).show();
@@ -187,98 +202,7 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void saveImageUrlToDatabase(String imageUrl) {
-
-        // Define object
-        title = findViewById(R.id.title_et);
-        content = findViewById(R.id.content_et);
-        lostlocation = findViewById(R.id.lostlocation_et);
-        lostdate = findViewById(R.id.lostdate_et);
-        losttime = findViewById(R.id.losttime_et);
-        name = findViewById(R.id.name_et);
-        species = findViewById(R.id.species_et);
-        callnum = findViewById(R.id.callnum_et);
-
-        String ttitle= title.getText().toString();
-        String tcontent= content.getText().toString();
-        String tlostlocation= lostlocation.getText().toString();
-        String tlostdate= lostdate.getText().toString();
-        String tlosttime= losttime.getText().toString();
-        String tname= name.getText().toString();
-        String tspecies= species.getText().toString();
-        String tcallnum= callnum.getText().toString();
-
-        // Create a new LostAnimal object with relevant information
-        LostAnimal lostAnimal = new LostAnimal();
-
-        lostAnimal.setTitle(ttitle);
-        lostAnimal.setContent(tcontent);
-        lostAnimal.setLostlocation(tlostlocation);
-        lostAnimal.setLostdate(tlostdate);
-        lostAnimal.setLosttime(tlosttime);
-        lostAnimal.setSpecies(tspecies);
-        lostAnimal.setName(tname);
-        lostAnimal.setCallnum(tcallnum);
-        lostAnimal.setImage(imageUrl);
-        // Set other attributes of the LostAnimal object
-
-        // Push the LostAnimal object to Firebase Realtime Database
-        mDatabase.child("LostAnimal").push().setValue(lostAnimal).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(LostAnimalRegisterActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
-                    // Clear or navigate to another screen after successful upload
-                } else {
-                    Toast.makeText(LostAnimalRegisterActivity.this, "Data save failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        // Push the LostAnimal object to Firebase Realtime Database under a single entry
-        mDatabase.child("LostAnimal").child(databaseEntryKey).setValue(lostAnimal)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            // Clear or navigate to another screen after successful upload
-                            Toast.makeText(LostAnimalRegisterActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(LostAnimalRegisterActivity.this, "Data save failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-     */
-    private void upload() {
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference("meong-nyang");
-
-        for (int i = 0; i < 3; i++) {
-            if (imageViews[i].getDrawable() != null && uris[i] != null) {
-                final int index = i;
-                storageReference.child("images/image" + (index + 1)).putFile(uris[i]).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            // Get the download URL of the uploaded image
-                            storageReference.child("images/image" + (index + 1)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri downloadUri) {
-                                    // Save the image URL of the first image to Realtime Database
-                                    saveImageUrlToDatabase(downloadUri.toString());
-                                }
-                            });
-                            Toast.makeText(LostAnimalRegisterActivity.this, "Image" + (index + 1) + " upload success", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(LostAnimalRegisterActivity.this, "Image " + (index + 1) + " upload failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        }
-    }
-
-    private void saveImageUrlToDatabase(String imageUrl) {
-
+    private void saveImageUrlToDatabase(String[] imageUrls) {
         // Define object
         title = findViewById(R.id.title_et);
         content = findViewById(R.id.content_et);
@@ -309,8 +233,17 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
         lostAnimal.setSpecies(tspecies);
         lostAnimal.setName(tname);
         lostAnimal.setCallnum(tcallnum);
-        lostAnimal.setImage(imageUrl);
-        // Set other attributes of the LostAnimal object
+
+        // Set image URLs based on the number of uploaded images
+        if (imageUrls.length >= 1) {
+            lostAnimal.setImage1(imageUrls[0]);
+        }
+        if (imageUrls.length >= 2) {
+            lostAnimal.setImage2(imageUrls[1]);
+        }
+        if (imageUrls.length >= 3) {
+            lostAnimal.setImage3(imageUrls[2]);
+        }
 
         // Push the LostAnimal object to Firebase Realtime Database
         mDatabase.child("LostAnimal").push().setValue(lostAnimal).addOnCompleteListener(new OnCompleteListener<Void>() {

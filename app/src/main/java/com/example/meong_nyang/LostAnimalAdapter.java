@@ -39,9 +39,9 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
     @Override
     public void onBindViewHolder(@NonNull LostAnimalViewHolder holder, int position) {
 
-        Glide.with(holder.image)
-                .load(arrayList.get(position).getImage())
-                .into(holder.image);
+        Glide.with(holder.image1)
+                .load(arrayList.get(position).getImage1())
+                .into(holder.image1);
         holder.title.setText(arrayList.get(position).getTitle());
         holder.content.setText(arrayList.get(position).getContent());
         holder.lostlocation.setText(arrayList.get(position).getLostlocation());
@@ -55,11 +55,13 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
                 intent = new Intent(view.getContext(), LostAnimalDetailActivity.class);
                 //정보 넘기기
                 intent.putExtra("title", arrayList.get(mPosition).getTitle());
-                intent.putExtra("content", arrayList.get(mPosition).getContent());//변수값 인텐트로 넘기기
+                intent.putExtra("content", arrayList.get(mPosition).getContent());
                 intent.putExtra("lostlocation", arrayList.get(mPosition).getLostlocation());
                 intent.putExtra("lostdate", arrayList.get(mPosition).getLostdate());
                 intent.putExtra("losttime", arrayList.get(mPosition).getLosttime());
-                intent.putExtra("image", arrayList.get(mPosition).getImage());
+                intent.putExtra("image1", arrayList.get(mPosition).getImage1());
+                intent.putExtra("image2", arrayList.get(mPosition).getImage2());
+                intent.putExtra("image3", arrayList.get(mPosition).getImage3());
                 intent.putExtra("name", arrayList.get(mPosition).getName());
                 intent.putExtra("species", arrayList.get(mPosition).getSpecies());
                 intent.putExtra("callnum", arrayList.get(mPosition).getCallnum());
@@ -82,7 +84,7 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
         TextView lostlocation;
         TextView lostdate;
         TextView losttime;
-        ImageView image;
+        ImageView image1;
         CardView cardView;
         public LostAnimalViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,7 +93,7 @@ public class LostAnimalAdapter extends RecyclerView.Adapter<LostAnimalAdapter.Lo
             this.lostlocation = itemView.findViewById(R.id.lostlocation);
             this.lostdate = itemView.findViewById(R.id.lostdate);
             this.losttime = itemView.findViewById(R.id.losttime);
-            this.image = itemView.findViewById(R.id.lostimage);
+            this.image1 = itemView.findViewById(R.id.lostimage);
             this.cardView = itemView.findViewById(R.id.lostanimal_container);
         }
     }

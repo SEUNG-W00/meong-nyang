@@ -5,6 +5,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,10 +30,12 @@ public class LostAnimalDetailActivity extends AppCompatActivity {
     String name;
     String callnum;
     String species;
-    String image;
+    String image1;
+    String image2;
+    String image3;
 
     TextView title_tv, content_tv, lostlocation_tv, lostdate_tv, losttime_tv, name_tv, callnum_tv, species_tv;
-    ImageView imageView;
+    ImageView imageView1, imageView2, imageView3;
     Uri uri;
 
     @Override
@@ -55,7 +58,10 @@ public class LostAnimalDetailActivity extends AppCompatActivity {
         name_tv = findViewById(R.id.name);
         species_tv = findViewById(R.id.species);
         callnum_tv = findViewById(R.id.callnum);
-        imageView = findViewById(R.id.imageView1);
+        imageView1 = findViewById(R.id.imageView1);
+        imageView2 = findViewById(R.id.imageView2);
+        imageView3 = findViewById(R.id.imageView3);
+
 
         intent = getIntent();
         title = intent.getStringExtra("title");
@@ -66,7 +72,9 @@ public class LostAnimalDetailActivity extends AppCompatActivity {
         name = intent.getStringExtra("name");
         species = intent.getStringExtra("species");
         callnum = intent.getStringExtra("callnum");
-        image = intent.getStringExtra("image");
+        image1 = intent.getStringExtra("image1");
+        image2 = intent.getStringExtra("image2");
+        image3 = intent.getStringExtra("image3");
 
         title_tv.setText(title);
         content_tv.setText(content);
@@ -77,9 +85,26 @@ public class LostAnimalDetailActivity extends AppCompatActivity {
         species_tv.setText("견종 및 묘종 : " + species);
         callnum_tv.setText("보호자 연락처 : " + callnum);
 
-        uri = Uri.parse(image);
-        Glide.with(LostAnimalDetailActivity.this).load(uri).into(imageView);
+        uri = Uri.parse(image1);
+        Glide.with(LostAnimalDetailActivity.this).load(uri).into(imageView1);
 
+        // Load and display image2
+        if (image2 != null && !image2.isEmpty()) {
+            uri = Uri.parse(image2);
+            Glide.with(LostAnimalDetailActivity.this).load(uri).into(imageView2);
+        } else {
+            // If image2 is null or empty, you can hide or set a placeholder for imageView2
+            imageView2.setVisibility(View.GONE);
+        }
+
+        // Load and display image3
+        if (image3 != null && !image3.isEmpty()) {
+            uri = Uri.parse(image3);
+            Glide.with(LostAnimalDetailActivity.this).load(uri).into(imageView3);
+        } else {
+            // If image3 is null or empty, you can hide or set a placeholder for imageView3
+            imageView3.setVisibility(View.GONE);
+        }
     }
 
 

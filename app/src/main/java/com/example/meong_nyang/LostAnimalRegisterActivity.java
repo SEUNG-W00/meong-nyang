@@ -96,6 +96,12 @@ public class LostAnimalRegisterActivity extends AppCompatActivity {
                 else if (item.getItemId() == R.id.question) {
                     Intent intent = new Intent(LostAnimalRegisterActivity.this, QnAActivity.class);
                     startActivity(intent);
+                } else if (item.getItemId() == R.id.apply) {
+                    Intent intent = new Intent(LostAnimalRegisterActivity.this, Volunteers.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.mypage) {
+                    Intent intent = new Intent(LostAnimalRegisterActivity.this, Mypage.class);
+                    startActivity(intent);
                 }
                 return true; // return true;
             }

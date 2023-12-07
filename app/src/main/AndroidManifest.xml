@@ -19,20 +19,26 @@
 
         <activity
             android:name=".Register"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+
+        <activity
+            android:name=".Mypage"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
 
         <activity
             android:name=".Login"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value=""/>
         </activity>
 
         <activity
@@ -86,6 +92,30 @@
             android:name=".QnAActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".Volunteers"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".VolunteerPoster"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".Finding_id"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".Finding_pw"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
         </activity>
 
     </application>

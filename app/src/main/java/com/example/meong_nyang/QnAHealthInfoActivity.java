@@ -73,6 +73,12 @@ public class QnAHealthInfoActivity extends AppCompatActivity {
                 else if (item.getItemId() == R.id.question) {
                     Intent intent = new Intent(QnAHealthInfoActivity.this, QnAActivity.class);
                     startActivity(intent);
+                } else if (item.getItemId() == R.id.apply) {
+                    Intent intent = new Intent(QnAHealthInfoActivity.this, Volunteers.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.mypage) {
+                    Intent intent = new Intent(QnAHealthInfoActivity.this, Mypage.class);
+                    startActivity(intent);
                 }
                 return true; // return true;
             }

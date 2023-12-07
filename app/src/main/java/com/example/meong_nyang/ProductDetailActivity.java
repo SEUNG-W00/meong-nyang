@@ -92,6 +92,12 @@ public class ProductDetailActivity extends AppCompatActivity {
                 else if (item.getItemId() == R.id.question) {
                     Intent intent = new Intent(ProductDetailActivity.this, QnAActivity.class);
                     startActivity(intent);
+                } else if (item.getItemId() == R.id.apply) {
+                    Intent intent = new Intent(ProductDetailActivity.this, Volunteers.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.mypage) {
+                    Intent intent = new Intent(ProductDetailActivity.this, Mypage.class);
+                    startActivity(intent);
                 }
                 return true; // return true;
             }

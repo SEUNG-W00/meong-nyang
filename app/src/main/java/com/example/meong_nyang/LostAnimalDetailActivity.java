@@ -1,5 +1,6 @@
 package com.example.meong_nyang;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class LostAnimalDetailActivity extends AppCompatActivity {
     Intent intent;
@@ -100,9 +103,38 @@ public class LostAnimalDetailActivity extends AppCompatActivity {
             // If image3 is null or empty, you can hide or set a placeholder for imageView3
             imageView3.setVisibility(View.GONE);
         }
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        //bottomNavigation 전환
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //if문으로 item.getItemId()값이 메뉴의 id값과 같은지 확인후 intent 로 activity로 전환
+                if (item.getItemId() == R.id.info) {
+                    Intent intent = new Intent(LostAnimalDetailActivity.this, MainActivity2.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.missing) {
+                    Intent intent = new Intent(LostAnimalDetailActivity.this, LostAnimalBoardActivity.class);
+                    startActivity(intent);
+                }
+                else if (item.getItemId() == R.id.question) {
+                    Intent intent = new Intent(LostAnimalDetailActivity.this, QnAActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.apply) {
+                    Intent intent = new Intent(LostAnimalDetailActivity.this, Volunteers.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.mypage) {
+                    Intent intent = new Intent(LostAnimalDetailActivity.this, Mypage.class);
+                    startActivity(intent);
+                }
+                return true; // return true;
+            }
+        });
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -119,4 +151,6 @@ public class LostAnimalDetailActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

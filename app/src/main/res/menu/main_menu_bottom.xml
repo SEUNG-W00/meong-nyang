@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="마이페이지"
-        android:id="@+id/main"
+        android:id="@+id/mypage"
         android:icon="@drawable/baseline_supervised_user_circle_24"
         app:showAsAction="always"/>
 </menu>

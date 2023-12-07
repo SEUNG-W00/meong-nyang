@@ -73,6 +73,12 @@ public class QnAAnimalRegisterActivity extends AppCompatActivity {
                 else if (item.getItemId() == R.id.question) {
                     Intent intent = new Intent(QnAAnimalRegisterActivity.this, QnAActivity.class);
                     startActivity(intent);
+                } else if (item.getItemId() == R.id.apply) {
+                    Intent intent = new Intent(QnAAnimalRegisterActivity.this, Volunteers.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.mypage) {
+                    Intent intent = new Intent(QnAAnimalRegisterActivity.this, Mypage.class);
+                    startActivity(intent);
                 }
                 return true; // return true;
             }
